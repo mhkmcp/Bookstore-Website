@@ -10,6 +10,10 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.2/ref/settings/
 admin123
 admin@123
+
+testuser1
+testuser1@gmail.com
+testpass123
 """
 
 import os
@@ -39,8 +43,11 @@ INSTALLED_APPS = [
 
     # third party apps
     'crispy_forms',
+    'allauth',  # new
+    'allauth.account',  # new
 
     # built-in app
+    'django.contrib.sites',     # new
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -48,6 +55,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -133,6 +141,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'     # crispy
 
 LOGIN_REDIRECT_URL = 'home'     # new
 LOGOUT_REDIRECT_URL = 'home'    # new
+ACCOUNT_LOGOUT_REDIRECT = 'home'    # new
 
 
 STATIC_URL = '/static/'
@@ -152,3 +161,23 @@ STATICFILES_FINDERS = [
 static, for any static files. Then the AppDirectoriesFinder looks for any directories
 named static located within an app, as opposed to located at a project-level static
 directory.'''
+
+
+# django-allauth config
+SITE_ID = 1     # new
+
+# new
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+# new
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+ACCOUNT_SESSION_REMEMBER = True
+ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = False     # new
+
+# login with email not username
+ACCOUNT_USERNAME_REQUIRED = False   # new
+ACCOUNT_AUTHENTICATION_METHOD = 'email'     # new
+ACCOUNT_EMAIL_REQUIRED = True   # new
+ACCOUNT_UNIQUE_EMAIL = True     # new
