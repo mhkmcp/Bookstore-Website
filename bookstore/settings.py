@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'pages.apps.PagesConfig',
 
+    # third party apps
+    'crispy_forms',
 
     # built-in app
     'django.contrib.admin',
@@ -125,11 +127,28 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
-AUTH_USER_MODEL = 'users.CustomUser' # new
 
-LOGIN_REDIRECT_URL = 'home' # new
-LOGOUT_REDIRECT_URL = 'home' # new
+AUTH_USER_MODEL = 'users.CustomUser'    # new
+CRISPY_TEMPLATE_PACK = 'bootstrap4'     # crispy
+
+LOGIN_REDIRECT_URL = 'home'     # new
+LOGOUT_REDIRECT_URL = 'home'    # new
 
 
 STATIC_URL = '/static/'
 
+# location of static files in local development
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'), ]     # new
+
+# location of static files for production
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')     # new
+
+# tells Django how to look for static file directories. [optional]
+STATICFILES_FINDERS = [
+    "django.contrib.staticfiles.finders.FileSystemFinder",
+    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
+]
+'''The FileSystemFinder looks within the STATICFILES_DIRS setting, which we set to
+static, for any static files. Then the AppDirectoriesFinder looks for any directories
+named static located within an app, as opposed to located at a project-level static
+directory.'''
