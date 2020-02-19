@@ -14,6 +14,9 @@ admin@123
 testuser1
 testuser1@gmail.com
 testpass123
+
+testuser1@gmail.com
+testpass123
 """
 
 import os
@@ -29,10 +32,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'k@6rj&gf41h34dimx917%7c-r%z!-f0l45hv7*^rb(gcb!1ktz'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
-DEBUG = int(os.environ.get('DEBUG', default=0))
+DEBUG = True
+# DEBUG = int(os.environ.get('DEBUG', default=0))
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -97,6 +100,15 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
+
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'NAME': 'postgres',
+    #     'USER': 'postgres',
+    #     'PASSWORD': 'postgres',
+    #     'HOST': 'db',
+    #     'PORT': 5432
+    # }
 }
 
 
@@ -136,6 +148,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
+DEFAULT_FROM_EMAIL = 'admin@djangobookstore.com'    # new
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'   # new
 
 AUTH_USER_MODEL = 'users.CustomUser'    # new
 CRISPY_TEMPLATE_PACK = 'bootstrap4'     # crispy
