@@ -17,6 +17,9 @@ testpass123
 
 testuser1@gmail.com
 testpass123
+
+mhkmch@gmail.com
+humayun123456
 """
 
 import os
@@ -44,6 +47,7 @@ INSTALLED_APPS = [
     # custom apps
     'users.apps.UsersConfig',
     'pages.apps.PagesConfig',
+    'books.apps.BooksConfig',   # new
 
     # third party apps
     'crispy_forms',
