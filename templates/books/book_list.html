@@ -4,6 +4,9 @@
 
 {% block content %}
     <h1>Books</h1>
+    {% if not perms.books.special_status %}
+        <a href="{% url 'orders' %}" class="btn btn-success" >Purchase All Books</a>
+    {% endif %}
     {% for book in book_list %}
         <div>
 <!--            <h2><a href="{% url 'book_detail' book.pk %}">{{ book.title }}</a></h2>-->

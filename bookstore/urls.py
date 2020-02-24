@@ -29,5 +29,6 @@ urlpatterns = [
     # local apps
     path('', include('pages.urls')),
     path('books/', include('books.urls')),
-    # path('accounts/', include('users.urls')),     # no more needed cz allauth
+    path('orders/', include('orders.urls')),
+    # path('accounts/', include('users.urls')),     # no more needed since we're using allauth
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'pages.apps.PagesConfig',
     'books.apps.BooksConfig',   # new
+    'orders.apps.OrdersConfig',     # new
 
     # third party apps
     'crispy_forms',
@@ -201,3 +202,9 @@ ACCOUNT_USERNAME_REQUIRED = False   # new
 ACCOUNT_AUTHENTICATION_METHOD = 'email'     # new
 ACCOUNT_EMAIL_REQUIRED = True   # new
 ACCOUNT_UNIQUE_EMAIL = True     # new
+
+
+# Stripe
+
+STRIPE_TEST_PUBLISHABLE_KEY = os.environ.get('STRIPE_TEST_PUBLISHABLE_KEY')
+STRIPE_TEST_SECRET_KEY = os.environ.get('STRIPE_TEST_SECRET_KEY')
